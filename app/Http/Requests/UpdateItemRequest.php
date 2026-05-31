@@ -12,7 +12,7 @@ class UpdateItemRequest extends FormRequest {
     public function rules() {
         return [
             'name' => 'sometimes|required|string|max:255',
-            'quantity' => 'sometimes|required|integer|min:0',
+            'qty' => 'sometimes|required|integer|min:0',
             'price' => 'sometimes|required|numeric|min:0',
             'category_id' => 'sometimes|required|exists:categories,id',
         ];
