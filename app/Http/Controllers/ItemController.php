@@ -63,6 +63,6 @@ class ItemController extends Controller {
             'status' => 'success',
             'data' => null,
             'message' => 'Item berhasil dihapus'
-        ], 204);
+        ], 200);
     }
 }
