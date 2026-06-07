@@ -15,4 +15,13 @@ class UpdateCategoryRequest extends FormRequest {
             'name' => "required|string|unique:categories,name,{$id}"
         ];
     }
+    protected function prepareForValidation(){
+    $input = $this->all();
+    array_walk($input, function (&$val) {
+        if (is_string($val)) {
+            $val = trim(strip_tags($val));
+        }
+    });
+    $this->merge($input);
+}
 }
