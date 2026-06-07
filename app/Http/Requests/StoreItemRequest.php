@@ -26,4 +26,13 @@ class StoreItemRequest extends FormRequest {
             'category_id.exists' => 'Kategori tidak ditemukan.',
         ];
     }
+    protected function prepareForValidation(){
+    $input = $this->all();
+    array_walk($input, function (&$val) {
+        if (is_string($val)) {
+            $val = trim(strip_tags($val));
+        }
+    });
+    $this->merge($input);
+}
 }
