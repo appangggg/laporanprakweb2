@@ -1,11 +1,10 @@
 <?php
 namespace App\Http\Controllers;
-use Illuminate\Http\Request; // <--- BARIS INI YANG WAJIB DITAMBAHKAN
-use App\Models\Item; // <--- Tambahkan ini juga jika belum ada
-use App\Http\Controllers\Api\BaseController; // Sesuaikan jika kamu pakai BaseController
+
 use App\Http\Requests\StoreItemRequest;
 use App\Http\Requests\UpdateItemRequest;
 use App\Services\ItemService;
+use App\Http\Controllers\Api\BaseController;
 use Exception;
 
 class ItemController extends BaseController {
@@ -15,18 +14,10 @@ class ItemController extends BaseController {
         $this->svc = $svc;
     }
 
-   public function index (Request $request) {
-    // Memuat Item beserta relasi category-nya
-    $query = Item::with('category'); 
+    public function index() {
+        return $this->success($this->svc->all());
+    }
 
-    // Logika filter: Jika ada parameter category_id di request
-    if ($request->filled('category_id')) { 
-        $query->where('category_id', $request->category_id); 
-    } 
-
-    // Mengembalikan response sukses
-    return $this->success($query->get()); 
-}
     public function store(StoreItemRequest $req){
         $item = $this->svc->create($req->validated());
         return $this->success($item, "Item dibuat", 201);
