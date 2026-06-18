@@ -6,10 +6,8 @@ Base URL: `http://localhost:8000/api/v1`
 * Body: `{ name, email, password, password_confirmation }`
 * Response: 201 Created
 ```json
-
-# Dokumentasi API Inventory
-
-## Endpoint Items
-
-`GET /api/v1/items?category_id={id}`
-
+{
+  "success": true,
+  "message": "User registered",
+  "data": { "user": "...", "token": "..." }
+}
