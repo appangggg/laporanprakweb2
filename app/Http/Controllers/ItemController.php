@@ -19,7 +19,7 @@ class ItemController extends BaseController {
     // Memuat Item beserta relasi category-nya
     $query = Item::with('category'); 
 
-    // Logika filter: Jika ada parameter category_id di request
+    // ini adalah Logika filter: Jika ada parameter category_id di request
     if ($request->filled('category_id')) { 
         $query->where('category_id', $request->category_id); 
     } 
