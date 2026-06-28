@@ -5,7 +5,10 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ItemController;
 
-Route::prefix('v1')->group(function() {
+Route::prefix('v1')->middleware([
+    'auth:sanctum',
+    'throttle:60,1'
+])->group(function() {
     Route::post('register', 'App\Http\Controllers\AuthController@register');
     Route::post('login', 'App\Http\Controllers\AuthController@login');
 
